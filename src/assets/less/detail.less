@@ -1,0 +1,105 @@
+.detail{
+    padding-bottom: 50PX;
+    /deep/ .van-nav-bar .van-icon, /deep/ .van-nav-bar__text{
+        color:blue
+    }
+    .pro-info{
+        background-color: white;
+        position: relative;
+        top: -20px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin: 0 10px;
+        padding: 10px;
+    }
+    .pro-box{
+        display: flex;
+    }
+    .pro-price{
+        margin-left:auto;
+        color:blue;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 33px;
+    }
+    .ch-name{
+        color:#666;
+        font-size: 14px;
+    }
+    .en-name{
+        color:#999;
+        font-size: 12px;
+    }
+    .rules{
+        margin-top: 30px;
+    }
+    .rule{
+        display: flex;
+        margin-top: 5px;
+    }
+    .rule-title{
+        width: 60px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 14px;
+    }
+    .rule-item{
+        display: flex;
+        >div{
+            width:60px;
+            text-align: center;
+            height: 28px;
+            line-height: 28px;
+            background-color: #e8e8e8;
+            border-radius: 14px;
+            color:#666;
+            margin-right:10px;
+            &:last-child{
+                margin-right:0
+            }
+            &.active{
+                background-color: blue;
+                color:white
+            }
+        }
+    }
+    .count-box{
+        border-top: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 20px 0;
+        margin-top: 30px;
+        display: flex;
+    }
+    .select-count{
+        font-size: 14px;
+        color:#666;
+    }
+    .count{
+        margin-left: auto;
+    }
+    /deep/ .van-stepper--round .van-stepper__plus{
+        background-color: blue;
+    }
+    /deep/ .van-stepper--round .van-stepper__minus{
+        color:blue;
+       border:1px solid blue
+    }
+    .desc{
+        margin-top: 30px;
+    }
+    .desc-title{
+        font-size: 14px;
+        color: #666;
+    }
+    .desc-text{
+        margin-top: 10px;
+        font-size: 12px;
+        color:#999;
+        >div{
+            margin-bottom: 10px;
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+}
