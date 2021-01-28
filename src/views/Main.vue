@@ -101,7 +101,7 @@ export default {
           tokenString,
         },
       }).then((res) => {
-        console.log(res);
+        // console.log(res);
         //  未登陆
         if (res.data.code == 700) {
           return;
@@ -109,9 +109,9 @@ export default {
         //  查询成功
         if (res.data.code == 8000) {
           // 购物车数量
-          console.log(res.data.result)
+          // console.log(res.data.result)
           this.changeShopbagCount(res.data.result)
-          this.changeIsLoadShopbagCont()
+          this.changeIsLoadShopbagCont(true)
         }
       });
     },

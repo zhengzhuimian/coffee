@@ -41,4 +41,16 @@ export const routes = [{
         component: () =>
             import ('../views/Detail.vue')
     },
+    {
+        path: '/addressList',
+        name: 'AddressList',
+        component: () =>
+            import ('../views/AddressList.vue')
+    },
+    {
+        path: '/address',
+        name: 'Address',
+        component: () =>
+            import ('../views/Address.vue')
+    },
 ]

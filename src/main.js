@@ -26,7 +26,12 @@ import {
     Checkbox,
     CheckboxGroup,
     SwipeCell,
-    SubmitBar
+    SubmitBar,
+    List,
+    Toast,
+    Empty,
+    AddressList,
+    AddressEdit
 } from 'vant';
 Vue
     .use(NavBar)
@@ -46,10 +51,16 @@ Vue
     .use(CheckboxGroup)
     .use(SwipeCell)
     .use(SubmitBar)
+    .use(List)
+    .use(Toast)
+    .use(Empty)
+    .use(AddressList)
+    .use(AddressEdit)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)
-    // 请求axios之前的拦截器
+
+// 请求axios之前的拦截器
 axios.interceptors.request.use(config => {
     // console.log(config.data)
 

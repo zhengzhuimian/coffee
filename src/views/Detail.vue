@@ -141,7 +141,7 @@ export default {
           // 购物车数量
           console.log(res.data.result)
           this.changeShopbagCount(res.data.result)
-          this.changeIsLoadShopbagCont()
+          this.changeIsLoadShopbagCont(true)
         }
       });
     },
@@ -336,14 +336,14 @@ export default {
 
             this.$toast({
               message: res.data.msg,
-              forbidClick: true,
-              duration: 3000,
+              // forbidClick: true,
+              duration: 1000,
             });
           } else {
             this.$toast({
               message: res.data.msg,
-              forbidClick: true,
-              duration: 3000,
+              // forbidClick: true,
+              duration: 1000,
             });
           }
         }

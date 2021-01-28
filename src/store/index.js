@@ -15,8 +15,13 @@ export default new Vuex.Store({
             state.shopabagCount = data
 
         },
-        changeIsLoadShopbagCont(state) {
-            state.isLoadShopbagCont = true
+        // 判断是否要加载
+        changeIsLoadShopbagCont(state, data) {
+            state.isLoadShopbagCont = data
+        },
+        // 删除减去购物车数量-1
+        removeshopabagCount(state) {
+            state.shopabagCount--;
         }
     },
     actions: {},

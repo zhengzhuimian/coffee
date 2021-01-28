@@ -71,6 +71,9 @@ import "../assets/less/login.less";
 import RXnav from "../components/RXnav.vue";
 
 import {utils} from '../assets/js/utils.js'
+
+import {mapMutations} from 'vuex'
+
 export default {
   name: "Login",
   data() {
@@ -96,7 +99,13 @@ export default {
   components: {
     RXnav,
   },
+  created() {
+    // 重新登录会把购物车的数量0，然后改为false重新获取
+      this.changeShopbagCount(0);
+      this.changeIsLoadShopbagCont(false)
+  },
   methods: {
+    ...mapMutations(['changeIsLoadShopbagCont','changeShopbagCount']),
     // 显示弹出层
     openPopup(){
       this.isOpen = true
