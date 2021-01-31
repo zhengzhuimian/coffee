@@ -1,4 +1,5 @@
 .address-list{
+    padding-bottom: 50px;
     /deep/ .van-nav-bar .van-icon, /deep/ .van-nav-bar__text{
         color:blue
     }
@@ -18,5 +19,11 @@
     /deep/ .van-button--danger{
         border-color:blue;
         background-color: blue;
+    }
+    /deep/ .van-address-item__address{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color:#666
     }
 }

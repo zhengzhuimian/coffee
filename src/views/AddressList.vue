@@ -12,6 +12,7 @@
         default-tag-text="默认"
         :switchable="false"
         @add="add"
+        @edit="edit"
       />
     </Bg>
   </div>
@@ -39,10 +40,15 @@ export default {
       this.$router.push({ name: "Address" });
     },
 
+    // 编辑
+     edit({aid}) {
+      this.$router.push({ name: "Address",params:{aid} });
+    },
+    
     // 查询地址
     getAddressListData() {
       let tokenString = this.$cookies.get("tokenString");
-      console.log(tokenString);
+      // console.log(tokenString);
       if (!tokenString) {
         return this.$router.push({ name: "Login" });
       }
@@ -61,7 +67,7 @@ export default {
           tokenString,
         },
       }).then((res) => {
-        console.log(res);
+        // console.log(res);
         this.$toast.clear();
         // 失败
         if (res.data.code == 700) {

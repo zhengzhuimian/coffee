@@ -31,7 +31,10 @@ import {
     Toast,
     Empty,
     AddressList,
-    AddressEdit
+    AddressEdit,
+    Icon,
+    Tab,
+    Tabs
 } from 'vant';
 Vue
     .use(NavBar)
@@ -56,6 +59,9 @@ Vue
     .use(Empty)
     .use(AddressList)
     .use(AddressEdit)
+    .use(Icon)
+    .use(Tab)
+    .use(Tabs)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)

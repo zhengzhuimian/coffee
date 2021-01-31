@@ -90,7 +90,12 @@
       </div>
 
       <!-- 提交订单 -->
-      <van-submit-bar v-show="isEdit" :price="total" button-text="提交订单">
+      <van-submit-bar
+        v-show="isEdit"
+        :price="total"
+        button-text="提交订单"
+        @submit="commit"
+      >
         <van-checkbox v-model="checked" @click="allSelect">全选</van-checkbox>
       </van-submit-bar>
       <van-submit-bar
@@ -322,21 +327,30 @@ export default {
           // 在删除的过程中如果商品高度少于屏幕高度再次触发懒加载
           this.$nextTick(() => {
             let cells = document.querySelectorAll(".shopbag-cell");
-            // 获取最后一个节点尺寸
-            let cellSize = cells[cells.length - 1].getBoundingClientRect();
-            // console.log(cellSize)
-            // 获取最后一个节点距离页面顶部的距离
-            let distance = cellSize.top;
-            // 获取最后一个节点的高度
-            let ceillHeight = cellSize.height;
-
-            // 获取屏幕高度
-            let innerHeight = window.innerHeight;
-            // console.log(innerHeight);
-
-            if (distance + ceillHeight - innerHeight <= 50) {
+            // 如果没有商品
+            if (
+              cells.length === 0 &&
+              this.shopbagData.length < this.shopbagAllData.length
+            ) {
               // 触发懒加载
               this.onLoad();
+            } else {
+              // 获取最后一个节点尺寸
+              let cellSize = cells[cells.length - 1].getBoundingClientRect();
+              // console.log(cellSize)
+              // 获取最后一个节点距离页面顶部的距离
+              let distance = cellSize.top;
+              // 获取最后一个节点的高度
+              let ceillHeight = cellSize.height;
+
+              // 获取屏幕高度
+              let innerHeight = window.innerHeight;
+              // console.log(innerHeight);
+
+              if (distance + ceillHeight - innerHeight <= 50) {
+                // 触发懒加载
+                this.onLoad();
+              }
             }
           });
 
@@ -384,6 +398,27 @@ export default {
         }
       });
       this.total = total * 100;
+    },
+
+    // 提交订单
+    commit() {
+      let sids = [];
+      this.shopbagData.forEach((v) => {
+        if (v.isChecked) {
+          sids.push(v.sid);
+        }
+      });
+    // console.log(sids)
+       if (sids.length === 0) {
+        this.$toast({
+          message: "请选择下单商品",
+          forbidClick: true,
+          duration: 1000,
+        });
+        return;
+      }
+
+      this.$router.push({name:'Pay',query:{sids:sids.join("-")}})
     },
   },
 };
