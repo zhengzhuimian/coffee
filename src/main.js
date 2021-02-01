@@ -9,6 +9,7 @@ import VueCookies from 'vue-cookies'
 import 'lib-flexible/flexible'
 
 Vue.config.productionTip = false
+    // vant
 import {
     NavBar,
     Field,
@@ -34,7 +35,10 @@ import {
     AddressEdit,
     Icon,
     Tab,
-    Tabs
+    Tabs,
+    Uploader,
+    Cell,
+    CellGroup
 } from 'vant';
 Vue
     .use(NavBar)
@@ -62,6 +66,9 @@ Vue
     .use(Icon)
     .use(Tab)
     .use(Tabs)
+    .use(Uploader)
+    .use(Cell)
+    .use(CellGroup)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)
@@ -69,8 +76,6 @@ Vue.use(VueCookies)
 // 请求axios之前的拦截器
 axios.interceptors.request.use(config => {
     // console.log(config.data)
-
-
     if (config.method === 'post') {
         let paramsString = ''
         for (let key in config.data) {
@@ -87,6 +92,39 @@ axios.interceptors.request.use(config => {
 Vue.prototype.baseUrl = 'http://www.kangliuyong.com:10002'
 Vue.prototype.appkey = 'U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA='
 
+// 定义全局过滤器 日期
+Vue.filter('formatDate', (data, format) => {
+    // data是要过滤的对象
+    // format格式
+    let date = new Date(data)
+
+    let year = date.getFullYear().toString()
+        // 年份
+    if (/(y+)/.test(format)) {
+        let yearContent = RegExp.$1;
+        format = format.replace(yearContent, year.slice(year.length - yearContent.length))
+    }
+
+    // 月日时分秒
+    let dateObject = {
+        M: date.getMonth() + 1,
+        d: date.getDate(),
+        h: date.getHours(),
+        m: date.getMinutes(),
+        s: date.getSeconds()
+    }
+
+    // 替换月日时分秒格式
+    for (let key in dateObject) {
+        let reg = new RegExp(`(${key}+)`)
+        if (reg.test(format)) {
+            let content = RegExp.$1;
+            format = format.replace(content, dateObject[key] >= 10 ?
+                dateObject[key] : content.length === 2 ? '0' + dateObject[key] : dateObject[key])
+        }
+    }
+    return format
+})
 
 new Vue({
     router,

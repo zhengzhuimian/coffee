@@ -17,7 +17,7 @@
         </div>
         <!-- 日期 -->
         <div class="foot-info">
-             <div class="date" v-if="proInfo.date">{{proInfo.date}}</div>
+             <div class="date" v-if="proInfo.date">{{proInfo.date | formatDate('yyyy-MM-dd hh:mm:ss')}}</div>
              <!-- 件数和价钱 -->
              <div class="foot-bottom">
                  <div class="foot-count">共计{{proInfo.count}}件</div>

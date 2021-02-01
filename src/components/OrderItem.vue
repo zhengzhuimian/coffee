@@ -1,7 +1,7 @@
 <template>
   <div class="order-item">
       <div class="pro-img">
-          <img class="auto-img" :src="product.small_img" alt="">
+          <img class="auto-img" :src="product.small_img || product.smallImg" alt="">
       </div>
       <!-- 类型 -->
       <div class="pro-info">

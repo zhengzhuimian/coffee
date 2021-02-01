@@ -1,6 +1,11 @@
 <template>
   <div class="detail">
-    <van-nav-bar title="商品详情" left-text="返回" left-arrow  @click-left="$router.go(-1)"/>
+    <van-nav-bar
+      title="商品详情"
+      left-text="返回"
+      left-arrow
+      @click-left="$router.go(-1)"
+    />
     <div>
       <img class="auto-img" :src="datailData.large_img" alt="" />
     </div>
@@ -77,6 +82,7 @@
           color="#0C34BA"
           type="danger"
           text="立即购买"
+          @click="buyNow"
         />
       </van-goods-action>
     </div>
@@ -86,7 +92,7 @@ direc
 <script>
 import "../assets/less/detail.less";
 import { utils } from "../assets/js/utils.js";
-import {mapState,mapMutations} from 'vuex'
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -100,22 +106,26 @@ export default {
       count: 1,
     };
   },
-  computed:{
-    ...mapState(['shopabagCount','isLoadShopbagCont'])
-
+  computed: {
+    ...mapState(["shopabagCount", "isLoadShopbagCont"]),
   },
   created() {
     this.pid = this.$route.params.pid;
-
+    // 获取详情
     this.getDetaiData();
+    // 查询是否收藏
     this.getLikeProduct();
-    this.getShopbagCount()
+    // 获取购物车的数目
+    this.getShopbagCount();
   },
   methods: {
+    // 增加商品数量
+    ...mapMutations(["changeShopbagCount", "changeIsLoadShopbagCont"]),
+
     // 获取购物车的数目
     getShopbagCount() {
-      if(this.isLoadShopbagCont){
-        return
+      if (this.isLoadShopbagCont) {
+        return;
       }
       let tokenString = this.$cookies.get("tokenString");
       console.log(tokenString);
@@ -139,14 +149,12 @@ export default {
         //  查询成功
         if (res.data.code == 8000) {
           // 购物车数量
-          console.log(res.data.result)
-          this.changeShopbagCount(res.data.result)
-          this.changeIsLoadShopbagCont(true)
+          this.changeShopbagCount(res.data.result);
+          this.changeIsLoadShopbagCont(true);
         }
       });
     },
-      // 增加商品数量
-     ...mapMutations(['changeShopbagCount','changeIsLoadShopbagCont']),
+
     // 获取详情
     getDetaiData() {
       this.axios({
@@ -297,9 +305,8 @@ export default {
       });
     },
 
-   
     // 添加购物车
-    appShopbag() {
+    appShopbag(isBuy) {
       let tokenString = this.$cookies.get("tokenString");
       // console.log(this.datailData);
       if (!tokenString) {
@@ -329,10 +336,9 @@ export default {
         }
         //  查询成功
         if (res.data.code == 3000) {
-         
           if (res.data.status === 1) {
             // 增加商品数量
-            this.changeShopbagCount(this.shopabagCount + 1)
+            this.changeShopbagCount(this.shopabagCount + 1);
 
             this.$toast({
               message: res.data.msg,
@@ -346,11 +352,22 @@ export default {
               duration: 1000,
             });
           }
+
+          if (isBuy) {
+            // 跳转到结算订单组件
+            // this.$router.push({ name: "Pay", query: { sids: res.data.sid } });
+            console.log(111)
+          }
         }
       });
     },
 
-    // 
+    // 立即购买
+    buyNow() {
+      // 因为没有立即购买的接口,只能通过调用购物车接口再去结算
+      this.appShopbag(true);
+      console.log("购买")
+    },
   },
 };
 </script>
