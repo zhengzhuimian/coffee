@@ -6,11 +6,6 @@ const MainRouets = [{
     component: () =>
         import ('../views/Home.vue')
 }, {
-    path: '/menu',
-    name: 'Menu',
-    component: () =>
-        import ('../views/Menu.vue')
-}, {
     path: '/shopbag',
     name: 'Shopbag',
     component: () =>
@@ -64,5 +59,11 @@ export const routes = [{
         name: 'Order',
         component: () =>
             import ('../views/Order.vue')
+    },
+    {
+        path: '/menu',
+        name: 'Menu',
+        component: () =>
+            import ('../views/Menu.vue')
     },
 ]

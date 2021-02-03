@@ -6,7 +6,7 @@
     </div>
     <van-tabbar
       v-model="activeIndex"
-      active-color="#0c34BA"
+      active-color="#00A862"
       inactive-color="#646566"
       route
     >
@@ -38,7 +38,6 @@ export default {
   },
   computed: {
     ...mapState(["shopabagCount",'isLoadShopbagCont',]),
-
     tabbarData(){
          return [
         {
@@ -50,18 +49,10 @@ export default {
           to: "/",
         },
         {
-          title: "菜单",
-          icon: {
-            active: require("../assets/images/menu_active.png"),
-            inactive: require("../assets/images/menu.png"),
-          },
-          to: "/Menu",
-        },
-        {
           title: "购物车",
           icon: {
-            active: require("../assets/images/shopbag_active.png"),
-            inactive: require("../assets/images/shopbag.png"),
+            active: require("../assets/images/shopping_highlight.png"),
+            inactive: require("../assets/images/shopping.png"),
           },
           to: "/Shopbag",
           badge: this.shopabagCount,
@@ -88,7 +79,7 @@ export default {
         return
       }
       let tokenString = this.$cookies.get("tokenString");
-      console.log(tokenString);
+      // console.log(tokenString);
       if (!tokenString) {
         // console.log("不存在");
         return;
@@ -121,6 +112,9 @@ export default {
 
 <style lang="less" scoped>
 .main {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
+  /deep/ .van-info{
+    background-color: #00A862;
+  }
 }
 </style>

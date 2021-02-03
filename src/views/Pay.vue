@@ -2,7 +2,6 @@
   <div class="pay">
     <van-nav-bar
       title="订单结算"
-      left-text="返回"
       left-arrow
       @click-left="$router.go(-1)"
     >
@@ -52,7 +51,7 @@
     </van-popup>
 
     <div class="pay-btn" >
-      <van-button color="blue" block round @click="pay">立即结算</van-button>
+      <van-button color="#00A862" block round @click="pay">立即结算</van-button>
     </div>
   </div>
 </template>
@@ -278,7 +277,7 @@ export default {
         if (res.data.code == 60000) {
           // 修改购物袋数量
           this.changeShopbagCount(this.shopabagCount - this.sids.length)
-          
+         
           // 跳转订单页面
           this.$router.push({name:'Order'})
         } else {

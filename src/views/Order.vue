@@ -2,7 +2,6 @@
   <div class="order">
     <van-nav-bar
       title="我的订单"
-      left-text="返回"
       left-arrow
       @click-left="$router.go(-1)"
     />
@@ -10,9 +9,9 @@
       <van-tabs
         v-model="activeTabIndex"
         swipeable
-        title-active-color="blue"
+        title-active-color="#00A862"
         :line-height="2"
-        color="#0c34BA"
+        color="#00A862"
         @change="changeOrderStatus"
       >
         <van-tab v-for="(item, index) in tabs" :key="index" :title="item.title">
@@ -163,6 +162,7 @@ export default {
           });
           // console.log(products)
           this.orderData = products;
+          this.orderData.reverse()
         } else {
           this.$toast.loading({
             message: res.data.msg,

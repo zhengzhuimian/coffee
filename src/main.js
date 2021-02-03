@@ -38,7 +38,9 @@ import {
     Tabs,
     Uploader,
     Cell,
-    CellGroup
+    CellGroup,
+    Sidebar,
+    SidebarItem
 } from 'vant';
 Vue
     .use(NavBar)
@@ -69,6 +71,8 @@ Vue
     .use(Uploader)
     .use(Cell)
     .use(CellGroup)
+    .use(Sidebar)
+    .use(SidebarItem)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)

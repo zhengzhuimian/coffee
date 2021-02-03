@@ -2,7 +2,6 @@
   <div class="detail">
     <van-nav-bar
       title="商品详情"
-      left-text="返回"
       left-arrow
       @click-left="$router.go(-1)"
     />
@@ -73,13 +72,13 @@
           @click="likeAndNotLike"
         />
         <van-goods-action-button
-          color="#6A91EC"
+          color="rgb(113 156 138)"
           type="warning"
           text="加入购物车"
           @click="appShopbag"
         />
         <van-goods-action-button
-          color="#0C34BA"
+          color="#00A862"
           type="danger"
           text="立即购买"
           @click="buyNow"

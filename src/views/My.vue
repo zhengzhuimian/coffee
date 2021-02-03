@@ -1,20 +1,17 @@
 <template>
   <div class="my" v-if="userInfo">
     <!-- 背景图 -->
-    <div
-      class="my-bg"
-      :style="{ backgroundImage: `url(${userInfo[0].userBg})` }"
-    >
-      <van-uploader />
+    <div class="my-bg">
+      <!-- <van-uploader /> -->
     </div>
     <div class="my-box">
       <div class="my-info">
         <!-- 头像 -->
         <div class="my-img">
-          <img class="auto-img" :src="userInfo[0].userImg" alt="" />
+          <img class="auto-img" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2867449984,3525681023&fm=26&gp=0.jpg" alt="" />
           <!-- 更换头像 -->
           <div class="up-img">
-            <van-uploader :max-size="500 * 1024" @oversize="uploadAvatar"/>
+            <van-uploader :max-size="500 * 1024" @oversize="uploadAvatar" />
           </div>
         </div>
         <div class="my-text">
@@ -34,6 +31,7 @@
           title-style="color:#666"
           v-for="(item, index) in cellData"
           :key="index"
+          @click="$router.push({name:item.name})"
         />
       </div>
     </div>
@@ -42,8 +40,10 @@
 
 <script>
 import "../assets/less/my.less";
+
 export default {
   name: "My",
+  
   data() {
     return {
       cellData: [

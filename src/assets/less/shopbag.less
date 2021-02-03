@@ -1,7 +1,20 @@
 .shopbag{
     padding-bottom: 50px;
     /deep/ .van-nav-bar .van-icon, /deep/ .van-nav-bar__text{
-        color:blue
+        color:#00A862
+    }
+    /deep/ .van-button--danger{
+        background-color:#00A862 ;
+    }
+    .shopbag-nav{
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .shopbag-bg{
+        padding-top: 46px;
     }
    .shopbag-box{
        padding: 10px 10px 0;
@@ -53,7 +66,7 @@
                        display: flex;
                        .pro-price{
                            line-height: 30px;
-                           color:blue;
+                           color:#00A862;
                            font-weight: bold;
                            font-size: 14px;
                            margin-right:auto
@@ -61,11 +74,11 @@
                        .pro-count{
                            padding-top: 4px;
                            /deep/ .van-stepper--round .van-stepper__plus{
-                            background-color: blue;
+                            background-color: #00A862;
                         }
                         /deep/ .van-stepper--round .van-stepper__minus{
-                            color:blue;
-                           border:1px solid blue
+                            color:#00A862;
+                           border:1px solid #00A862
                         }
                        }
                    }
@@ -86,4 +99,16 @@
    /deep/ .van-submit-bar__button{
        margin-left: auto;
    }
+  /deep/ .van-checkbox__icon--checked .van-icon{
+    color: #fff;
+    background-color: #00A862;
+    border-color: #00A862;
+  }
+  /deep/ .van-submit-bar__button--danger{
+      background: #00A862;
+  }
+  /deep/ .van-submit-bar__price,.van-nav-bar__title{
+      color: #00A862;
+  }
+  
 }

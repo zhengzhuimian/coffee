@@ -1,34 +1,24 @@
 <template>
   <div class="home">
-
-    <van-nav-bar>
-      <template #left>
-        <div class="home-title">
-          <div>下午好</div>
-          <div class="ussername one-text">Allen111111</div>
-        </div>
-      </template>
-      <template #right>
-        <van-search
-          placeholder="请输入商品名称"
-          shape="round"
-        />
-      </template>
-    </van-nav-bar>
-
-
     <!-- 轮播图 -->
-    <van-swipe @change="changeCurrentIndex" :autoplay="2000">
-      <van-swipe-item v-for="(item,index) in bannerData" :key="index">
-        <img @click="viewProduct(item.pid)" class="auto-img" :src="item.bannerImg" alt="">
+    <van-swipe @change="changeCurrentIndex" :autoplay="3000">
+      <van-swipe-item v-for="(item, index) in bannerData" :key="index">
+        <img
+          @click="viewProduct(item.pid)"
+          class="auto-img"
+          :src="item.bannerImg"
+          alt=""
+          height="220px"
+        />
       </van-swipe-item>
-    
-      <template #indicator>
-        <div class="indicator-box">
-          <div class="indicator-item" :class="{active:currentIndex === i}" v-for="(v,i) in bannerData" :key="i"></div>
-        </div>
-      </template>
     </van-swipe>
+
+    <!-- 点我下单 -->
+    <div class="menu-box" @click="$router.push({name:'Menu'})">
+      <div class="menu">
+        点我菜单
+      </div>
+    </div>
 
     <!-- 推荐 -->
     <div class="product-box">
@@ -37,12 +27,16 @@
       </div>
       <!-- 商品 -->
       <div class="product-items">
-        <Product class="product-item" v-for="(item,index) in hotProduct" :product="item" :key="index">
+        <Product
+          class="product-item"
+          v-for="(item, index) in hotProduct"
+          :product="item"
+          :key="index"
+        >
           <template #hot>
             <div class="hot-box">hot</div>
           </template>
         </Product>
-       
       </div>
     </div>
   </div>
@@ -50,88 +44,102 @@
 
 <script>
 import "../assets/less/home.less";
-import Product from '../components/Product.vue';
+import Product from "../components/Product.vue";
 
 export default {
   name: "Home",
-  components: {Product},
+  components: { Product },
   data() {
     return {
-      currentIndex:0,
+      currentIndex: 0,
       // 轮播图数据
-      bannerData:[],
+      bannerData: [],
       // 推荐商品
-      hotProduct:[]
+      hotProduct: [],
     };
   },
-  created(){
-    this.getBannnerData()
+  created() {
+    this.getBannnerData();
 
-    this.getHotProduct()
+    this.getHotProduct();
   },
   methods: {
     // 切换轮播图
-    changeCurrentIndex(index){
+    changeCurrentIndex(index) {
       // console.log(index)
-      this.currentIndex  = index
+      this.currentIndex = index;
     },
 
     // 获取轮播图数据
-    getBannnerData(){
-      // this.$toast.loading({
-      //   message:"加载中",
-      //   forbidClick:true,
-      //   duration:0
-      // })
-
+    getBannnerData() {
       this.axios({
-        method:'GET',
-        url:this.baseUrl + '/banner',
-        params:{
-          appkey:this.appkey
-        }
-      }).then(res=>{
+        method: "GET",
+        url: this.baseUrl + "/banner",
+        params: {
+          appkey: this.appkey,
+        },
+      }).then((res) => {
         //  console.log(res)
-         if(res.data.code === 300){
-           this.bannerData = res.data.result
-         }else{
-           this.$toast({
-            message:res.data.msg,
-            forbidClick:true,
-            duration:3000
-          })
-         }
-      })
+        if (res.data.code === 300) {
+          this.bannerData = res.data.result;
+        } else {
+          this.$toast({
+            message: res.data.msg,
+            forbidClick: true,
+            duration: 3000,
+          });
+        }
+      });
     },
 
     // 获取推荐商品
-    getHotProduct(){
-      //  this.$toast.loading({
-      //   message:"加载中",
-      //   forbidClick:true,
-      //   duration:0
-      // })
-         this.axios({
-        method:'GET',
-        url:this.baseUrl + '/typeProducts',
-        params:{
-          appkey:this.appkey,
-          key:'isHot',
-          value:1
+    getHotProduct() {
+      this.$toast.loading({
+        message: "加载中",
+        forbidClick: true,
+        duration: 0,
+      });
+      this.axios({
+        method: "GET",
+        url: this.baseUrl + "/typeProducts",
+        params: {
+          appkey: this.appkey,
+          key: "isHot",
+          value: 1,
+        },
+      }).then((res) => {
+        // console.log(res);
+        this.$toast.clear();
+        if (res.data.code === 500) {
+          this.hotProduct = res.data.result;
         }
-      }).then(res=>{
-        //  console.log(res)
-          // this.$toast.clear();
-         if(res.data.code === 500){
-           this.hotProduct = res.data.result
-         }
-      })
+      });
     },
 
     // 查看商品详情
-    viewProduct(pid){
-      this.$router.push({name:'Detail',params:{pid}})
-    }
+    viewProduct(pid) {
+      this.$router.push({ name: "Detail", params: { pid } });
+    },
+
+    gg() {
+      this.axios({
+        method: "GET",
+        url: this.baseUrl + "/type",
+        params: {
+          appkey: this.appkey,
+        },
+      }).then((res) => {
+        console.log(res);
+        if (res.data.code === 300) {
+        } else {
+          this.$toast({
+            message: res.data.msg,
+            forbidClick: true,
+            duration: 3000,
+          });
+        }
+      });
+    },
   },
 };
 </script>

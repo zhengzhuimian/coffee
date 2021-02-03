@@ -1,19 +1,16 @@
 <template>
   <div class="shopbag" @click-left="$router.go(-1)">
-    <van-nav-bar
-      title="购物车"
-      left-text="返回"
-      left-arrow
-      @click-right="isEdit = !isEdit"
-    >
-      <template #right>
-        <div>
-          <div class="toggleEditStatus" v-if="shopbagData.length > 0">
-            {{ !isEdit ? "完成" : "编辑" }}
+    <div class="shopbag-nav">
+      <van-nav-bar title="购物车" left-arrow @click-right="isEdit = !isEdit">
+        <template #right>
+          <div>
+            <div class="toggleEditStatus" v-if="shopbagData.length > 0">
+              {{ !isEdit ? "完成" : "编辑" }}
+            </div>
           </div>
-        </div>
-      </template>
-    </van-nav-bar>
+        </template>
+      </van-nav-bar>
+    </div>
 
     <div v-if="shopbagData.length > 0">
       <!-- 背景图片 -->
@@ -408,8 +405,8 @@ export default {
           sids.push(v.sid);
         }
       });
-    // console.log(sids)
-       if (sids.length === 0) {
+      // console.log(sids)
+      if (sids.length === 0) {
         this.$toast({
           message: "请选择下单商品",
           forbidClick: true,
@@ -418,7 +415,7 @@ export default {
         return;
       }
 
-      this.$router.push({name:'Pay',query:{sids:sids.join("-")}})
+      this.$router.push({ name: "Pay", query: { sids: sids.join("-") } });
     },
   },
 };
