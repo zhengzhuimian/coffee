@@ -40,7 +40,8 @@ import {
     Cell,
     CellGroup,
     Sidebar,
-    SidebarItem
+    SidebarItem,
+    Divider
 } from 'vant';
 Vue
     .use(NavBar)
@@ -73,6 +74,7 @@ Vue
     .use(CellGroup)
     .use(Sidebar)
     .use(SidebarItem)
+    .use(Divider)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)

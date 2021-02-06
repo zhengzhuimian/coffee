@@ -6,9 +6,9 @@
     >
       <template #left>
         <div class="left-title">
-          <div class="logo">
+          <!-- <div class="logo">
             <img class="auto-img" src="../assets/images/home_active.png" alt="">
-          </div>
+          </div> -->
           <div class="logo-title">Luckin Coffee</div>
         </div>
       </template>

@@ -7,7 +7,6 @@
     <van-tabbar
       v-model="activeIndex"
       active-color="#00A862"
-      inactive-color="#646566"
       route
     >
       <van-tabbar-item

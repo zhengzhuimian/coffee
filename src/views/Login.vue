@@ -25,12 +25,12 @@
 
       <div class="forgot"><span>忘记密码</span></div>
         <div class="btn-box">
-          <van-button round block color='#0c34BA' @click="login">登&nbsp;&nbsp;&nbsp;录</van-button>
-          <van-button  round block color='red' class="register-btn" type="default"  @click="openPopup">注册</van-button>
+          <van-button round block color='#00A862' @click="login">登&nbsp;&nbsp;&nbsp;录</van-button>
+          <van-button  round block color='#00A862'  class="register-btn" type="default"  @click="openPopup">注册</van-button>
         </div>
       </div>
 
-      <van-popup v-model="isOpen" closeable position="bottom">
+      <van-popup v-model="isOpen" closeable position="bottom" >
         <div class="register-box">
           <div class="register-title">注册</div>
         </div>
@@ -56,7 +56,7 @@
           placeholder="输入昵称(1-11位)"
         />
         <div class="btn-box">
-          <van-button round block color='#0c34BA' @click="register">注&nbsp;&nbsp;&nbsp;册</van-button>
+          <van-button round block color='#00A862' @click="register">注&nbsp;&nbsp;&nbsp;册</van-button>
          
         </div>
       </div>

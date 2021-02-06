@@ -75,7 +75,7 @@
           color="rgb(113 156 138)"
           type="warning"
           text="加入购物车"
-          @click="appShopbag"
+          @click="appShopbag(false)"
         />
         <van-goods-action-button
           color="#00A862"
@@ -127,7 +127,6 @@ export default {
         return;
       }
       let tokenString = this.$cookies.get("tokenString");
-      console.log(tokenString);
       if (!tokenString) {
         // console.log("不存在");
         return;
@@ -140,7 +139,7 @@ export default {
           tokenString,
         },
       }).then((res) => {
-        console.log(res);
+        // console.log(res);
         //  未登陆
         if (res.data.code == 700) {
           return;
@@ -223,7 +222,7 @@ export default {
           tokenString,
         },
       }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.code == 700) {
           return this.$router.push({ name: "Login" });
         }
@@ -307,8 +306,8 @@ export default {
     // 添加购物车
     appShopbag(isBuy) {
       let tokenString = this.$cookies.get("tokenString");
-      // console.log(this.datailData);
       if (!tokenString) {
+        this.$router.push({name:"Login"})
         return;
       }
       let rules = [];
@@ -316,7 +315,6 @@ export default {
       this.datailData.rulesData.forEach((v) => {
         rules.push(v.rule[v.currentIndex].title);
       });
-
       this.axios({
         method: "POST",
         url: this.baseUrl + "/addShopcart",
@@ -354,8 +352,7 @@ export default {
 
           if (isBuy) {
             // 跳转到结算订单组件
-            // this.$router.push({ name: "Pay", query: { sids: res.data.sid } });
-            console.log(111)
+            this.$router.push({ name: "Pay", query: { sids: res.data.sid } });
           }
         }
       });
@@ -365,7 +362,7 @@ export default {
     buyNow() {
       // 因为没有立即购买的接口,只能通过调用购物车接口再去结算
       this.appShopbag(true);
-      console.log("购买")
+
     },
   },
 };

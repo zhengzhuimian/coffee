@@ -2,7 +2,6 @@
   <div class="address">
     <van-nav-bar
       :title="aid ? '编辑地址' : '新增地址'"
-      left-text="返回"
       left-arrow
       @click-left="$router.go(-1)"
     />

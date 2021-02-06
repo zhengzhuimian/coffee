@@ -66,4 +66,10 @@ export const routes = [{
         component: () =>
             import ('../views/Menu.vue')
     },
+    {
+        path: '/collectionPage',
+        name: 'CollectionPage',
+        component: () =>
+            import ('../views/CollectionPage.vue')
+    },
 ]

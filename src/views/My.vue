@@ -8,7 +8,11 @@
       <div class="my-info">
         <!-- 头像 -->
         <div class="my-img">
-          <img class="auto-img" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2867449984,3525681023&fm=26&gp=0.jpg" alt="" />
+          <img
+            class="auto-img"
+            src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2867449984,3525681023&fm=26&gp=0.jpg"
+            alt=""
+          />
           <!-- 更换头像 -->
           <div class="up-img">
             <van-uploader :max-size="500 * 1024" @oversize="uploadAvatar" />
@@ -25,13 +29,37 @@
 
       <!-- 列表 -->
       <div class="my-list">
-        <van-cell
-          :title="item.title"
-          is-link
-          title-style="color:#666"
+        <div
+          class="my-list-icon"
           v-for="(item, index) in cellData"
           :key="index"
-          @click="$router.push({name:item.name})"
+          @click="$router.push({ name: item.name })"
+        >
+          <div>
+            <van-icon :name="item.icon" size="25" />
+          </div>
+          <span>{{ item.title }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 猜你喜欢 -->
+    <div class="like">
+      <van-divider
+        :style="{
+          color: '#00A862',
+          borderColor: '#d5d3d3',
+          padding: '0 16px',
+        }"
+      >
+        猜你喜欢
+      </van-divider>
+
+      <div>
+        <Commodity
+          v-for="(item, index) in GuessLike"
+          :key="index"
+          :item="item"
         />
       </div>
     </div>
@@ -40,24 +68,27 @@
 
 <script>
 import "../assets/less/my.less";
-
+import Commodity from "../components/Commodity.vue";
 export default {
   name: "My",
-  
+  components: { Commodity },
   data() {
     return {
       cellData: [
-        { title: "个人资料", name: "路由名称" },
-        { title: "我的订单", name: "Order" },
-        { title: "我的收藏", name: "" },
-        { title: "地址管理", name: "AddressList" },
-        { title: "安全中心", name: "" },
+        { title: "我的订单", name: "Order", icon: "todo-list-o" },
+        { title: "我的收藏", name: "CollectionPage", icon: "star-o" },
+        { title: "地址管理", name: "AddressList", icon: "envelop-o" },
+        // { title: "安全中心", name: "" },
       ],
       userInfo: "",
+      GuessLike: [],
     };
   },
   created() {
+    // 获取用户信息
     this.getUserInfo();
+    // 猜你喜欢
+    this.like();
   },
   methods: {
     // 获取用户信息
@@ -96,7 +127,6 @@ export default {
         // 成功
         if (res.data.code == "A001") {
           this.userInfo = res.data.result;
-          console.log(this.userInfo[0].nickName);
         } else {
           this.$toast.loading({
             message: res.data.msg,
@@ -109,8 +139,6 @@ export default {
 
     // 上传头像
     uploadAvatar(file) {
-      console.log(file);
-
       let types = ["png", "gif", "jpg", "jpeg"];
       let type = file.file.type.split("/")[1];
 
@@ -168,6 +196,55 @@ export default {
         }
       });
     },
+
+    // 获取猜你喜欢
+    like() {
+      this.$toast.loading({
+        message: "加载中",
+        forbidClick: true,
+        duration: 0,
+      });
+      this.axios({
+        method: "GET",
+        url: this.baseUrl + "/typeProducts",
+        params: {
+          appkey: this.appkey,
+          key: "type",
+          value: "coffee",
+        },
+      }).then((res) => {
+        this.GuessLike = res.data.result;
+        console.log(this.GuessLike);
+        this.$toast.clear();
+        if (res.data.code === 500) {
+          this.hotProduct = res.data.result;
+        }
+      });
+    },
+
+    aa(){
+       this.$toast.loading({
+        message: "加载中",
+        forbidClick: true,
+        duration: 0,
+      });
+      this.axios({
+        method: "GET",
+        url: this.baseUrl + "/typeProducts",
+        params: {
+          appkey: this.appkey,
+          key: "type",
+          value: "coffee",
+        },
+      }).then((res) => {
+        this.GuessLike = res.data.result;
+        // console.log(this.GuessLike);
+        this.$toast.clear();
+        if (res.data.code === 500) {
+          this.hotProduct = res.data.result;
+        }
+      });
+    }
   },
 };
 </script>
