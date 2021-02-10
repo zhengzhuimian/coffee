@@ -1,7 +1,7 @@
 <template>
   <div class="shopbag" @click-left="$router.go(-1)">
     <div class="shopbag-nav">
-      <van-nav-bar title="购物车" left-arrow @click-right="isEdit = !isEdit">
+      <van-nav-bar title="购物车"  @click-right="isEdit = !isEdit">
         <template #right>
           <div>
             <div class="toggleEditStatus" v-if="shopbagData.length > 0">
