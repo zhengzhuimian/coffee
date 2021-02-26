@@ -1,5 +1,13 @@
 <template>
   <div class="home">
+    <van-search
+  shape="round"
+   v-model="value"
+  background="#f7f7f7"
+  placeholder="请输入搜索关键词"
+   @search="search"
+/>
+<!-- <input type="text" v-on:keyup.enter="search"> -->
     <!-- 轮播图 -->
     <van-swipe @change="changeCurrentIndex" :autoplay="3000">
       <van-swipe-item v-for="(item, index) in bannerData" :key="index">
@@ -56,6 +64,8 @@ export default {
       bannerData: [],
       // 推荐商品
       hotProduct: [],
+      // 搜索名
+      value:""
     };
   },
   created() {
@@ -140,6 +150,21 @@ export default {
         }
       });
     },
+
+    // 搜索结果
+    search(){
+      this.$router.push({path:'/search',query:{search:this.value}})
+    //   this.axios({
+    //     method:"GET",
+    //     url:this.baseUrl + '/search',
+    //     params:{
+    //       appkey:this.appkey,
+    //       name:"咖啡"
+    //     }
+    //   }).then((res) => {
+    //       this.router.push({name:'Search'})
+    //     })
+    }
   },
 };
 </script>

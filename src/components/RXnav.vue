@@ -9,7 +9,7 @@
           <!-- <div class="logo">
             <img class="auto-img" src="../assets/images/home_active.png" alt="">
           </div> -->
-          <div class="logo-title">Luckin Coffee</div>
+          <div class="logo-title">Starbucks Coffee</div>
         </div>
       </template>
 

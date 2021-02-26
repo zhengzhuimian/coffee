@@ -72,4 +72,28 @@ export const routes = [{
         component: () =>
             import ('../views/CollectionPage.vue')
     },
+    {
+        path: '/search',
+        name: 'Search',
+        component: () =>
+            import ('../views/Search.vue')
+    },
+    {
+        path: '/safety',
+        name: 'Safety',
+        component: () =>
+            import ('../views/Safety.vue')
+    },
+    {
+        path: '/modification',
+        name: 'Modification',
+        component: () =>
+            import ('../views/Modification.vue')
+    },
+    {
+        path: '/forget',
+        name: 'Forget',
+        component: () =>
+            import ('../views/Forget.vue')
+    },
 ]

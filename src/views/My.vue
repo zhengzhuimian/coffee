@@ -22,7 +22,7 @@
           <!-- 名称  简介 -->
           <div class="my-name one-text">{{ userInfo[0].nickName }}</div>
           <div class="my-desc one-text">
-            {{ userInfo[0].dsec ? userInfo[0].desc : "什么都没有" }}
+            {{ userInfo[0].dsec ? userInfo[0].desc : "这个人很懒,什么都没留下" }}
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default {
         { title: "我的订单", name: "Order", icon: "todo-list-o" },
         { title: "我的收藏", name: "CollectionPage", icon: "star-o" },
         { title: "地址管理", name: "AddressList", icon: "envelop-o" },
-        // { title: "安全中心", name: "" },
+        { title: "安全中心", name:"Safety",icon: "certificate" },
       ],
       userInfo: "",
       GuessLike: [],
@@ -89,6 +89,8 @@ export default {
     this.getUserInfo();
     // 猜你喜欢
     this.like();
+
+
   },
   methods: {
     // 获取用户信息
@@ -214,7 +216,7 @@ export default {
         },
       }).then((res) => {
         this.GuessLike = res.data.result;
-        console.log(this.GuessLike);
+        // console.log(this.GuessLike);
         this.$toast.clear();
         if (res.data.code === 500) {
           this.hotProduct = res.data.result;
@@ -222,29 +224,29 @@ export default {
       });
     },
 
-    aa(){
-       this.$toast.loading({
-        message: "加载中",
-        forbidClick: true,
-        duration: 0,
-      });
-      this.axios({
-        method: "GET",
-        url: this.baseUrl + "/typeProducts",
-        params: {
-          appkey: this.appkey,
-          key: "type",
-          value: "coffee",
-        },
-      }).then((res) => {
-        this.GuessLike = res.data.result;
-        // console.log(this.GuessLike);
-        this.$toast.clear();
-        if (res.data.code === 500) {
-          this.hotProduct = res.data.result;
-        }
-      });
-    }
+    // aa(){
+    //    this.$toast.loading({
+    //     message: "加载中",
+    //     forbidClick: true,
+    //     duration: 0,
+    //   });
+    //   this.axios({
+    //     method: "GET",
+    //     url: this.baseUrl + "/typeProducts",
+    //     params: {
+    //       appkey: this.appkey,
+    //       key: "type",
+    //       value: "coffee",
+    //     },
+    //   }).then((res) => {
+    //     this.GuessLike = res.data.result;
+    //     // console.log(this.GuessLike);
+    //     this.$toast.clear();
+    //     if (res.data.code === 500) {
+    //       this.hotProduct = res.data.result;
+    //     }
+    //   });
+    // }
   },
 };
 </script>

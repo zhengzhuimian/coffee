@@ -41,7 +41,10 @@ import {
     CellGroup,
     Sidebar,
     SidebarItem,
-    Divider
+    Divider,
+    Dialog,
+    ContactEdit,
+    Form
 } from 'vant';
 Vue
     .use(NavBar)
@@ -75,6 +78,9 @@ Vue
     .use(Sidebar)
     .use(SidebarItem)
     .use(Divider)
+    .use(Dialog)
+    .use(ContactEdit)
+    .use(Form)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)

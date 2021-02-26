@@ -23,7 +23,7 @@
           @click-right-icon="toggleType"
         />
 
-      <div class="forgot"><span>忘记密码</span></div>
+      <div class="forgot" @click=" $router.push({ name: 'Modification' })"><span>忘记密码</span></div>
         <div class="btn-box">
           <van-button round block color='#00A862' @click="login">登&nbsp;&nbsp;&nbsp;录</van-button>
           <van-button  round block color='#00A862'  class="register-btn" type="default"  @click="openPopup">注册</van-button>
@@ -93,7 +93,7 @@ export default {
       // 是否显示弹出层
       isOpen:false,
 
-      isText:true
+      isText:false
     };
   },
   components: {
@@ -170,7 +170,7 @@ export default {
         }
       }).catch(err=>{
         this.$toast.clear();
-        console.log('err ==>', err)
+        // console.log('err ==>', err)
       })
     },
 
@@ -211,7 +211,7 @@ export default {
         }
       }).then(res => {
         this.$toast.clear();
-        console.log(res)
+        // console.log(res)
         if(res.data.code === 200){
           // 1d  是保存一天
             this.$cookies.set('tokenString',res.data.token,"1d")
@@ -226,7 +226,7 @@ export default {
         }
       }).catch(err =>{
         this.$toast.clear();
-        console.log('err',err)
+        // console.log('err',err)
       })
     },
 
