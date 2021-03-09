@@ -266,7 +266,6 @@ export default {
     // 单选
     simpleSelect() {
       this.sum();
-      // console.log(this.shopbagData[0].isChecked);
       // 有一个单选没勾选,则全选不能勾
       for (let i = 0; i < this.shopbagData.length; i++) {
         if (!this.shopbagData[i].isChecked) {

@@ -92,7 +92,6 @@ export default {
       },
       // 是否显示弹出层
       isOpen:false,
-
       isText:false
     };
   },

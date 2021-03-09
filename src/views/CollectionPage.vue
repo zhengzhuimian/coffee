@@ -9,6 +9,13 @@
       :index="index"
       @update:cancel = "cancel"
     />
+    <van-empty
+      class="custom-image"
+      image="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1285087026,2572595179&fm=26&gp=0.jpg"
+      description="暂无收藏"
+      v-if="collectionData == ''"
+    >
+    </van-empty>
   </div>
 </template>
 

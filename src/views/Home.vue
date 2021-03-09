@@ -131,39 +131,29 @@ export default {
       this.$router.push({ name: "Detail", params: { pid } });
     },
 
-    gg() {
-      this.axios({
-        method: "GET",
-        url: this.baseUrl + "/type",
-        params: {
-          appkey: this.appkey,
-        },
-      }).then((res) => {
-        console.log(res);
-        if (res.data.code === 300) {
-        } else {
-          this.$toast({
-            message: res.data.msg,
-            forbidClick: true,
-            duration: 3000,
-          });
-        }
-      });
-    },
+    // gg() {
+    //   this.axios({
+    //     method: "GET",
+    //     url: this.baseUrl + "/type",
+    //     params: {
+    //       appkey: this.appkey,
+    //     },
+    //   }).then((res) => {
+    //     console.log(res);
+    //     if (res.data.code === 300) {
+    //     } else {
+    //       this.$toast({
+    //         message: res.data.msg,
+    //         forbidClick: true,
+    //         duration: 3000,
+    //       });
+    //     }
+    //   });
+    // },
 
     // 搜索结果
     search(){
       this.$router.push({path:'/search',query:{search:this.value}})
-    //   this.axios({
-    //     method:"GET",
-    //     url:this.baseUrl + '/search',
-    //     params:{
-    //       appkey:this.appkey,
-    //       name:"咖啡"
-    //     }
-    //   }).then((res) => {
-    //       this.router.push({name:'Search'})
-    //     })
     }
   },
 };

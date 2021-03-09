@@ -63,7 +63,7 @@
           text="购物车"
           color="#666"
           :badge="shopabagCount > 0 ? shopabagCount : ''"
-          @click="$router.push('/shopbag')"
+          @click="$router.push({name:'Shopbag'})"
         />
         <van-goods-action-icon
           icon="like"

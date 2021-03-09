@@ -4,11 +4,7 @@
       <!-- 二级路由 -->
       <router-view></router-view>
     </div>
-    <van-tabbar
-      v-model="activeIndex"
-      active-color="#00A862"
-      route
-    >
+    <van-tabbar v-model="activeIndex" active-color="#00A862">
       <van-tabbar-item
         v-for="(item, index) in tabbarData"
         :key="index"
@@ -26,19 +22,18 @@
 </template>
 
 <script>
-import { mapState ,mapMutations} from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Main",
   data() {
     return {
       activeIndex: 0,
-     
     };
   },
   computed: {
-    ...mapState(["shopabagCount",'isLoadShopbagCont',]),
-    tabbarData(){
-         return [
+    ...mapState(["shopabagCount", "isLoadShopbagCont"]),
+    tabbarData() {
+      return [
         {
           title: "首页",
           icon: {
@@ -64,18 +59,19 @@ export default {
           },
           to: "/My",
         },
-      ]
-    }
+      ];
+    },
   },
   created() {
-    this.getShopbagCount()
+    // 获取购物车的数目
+    this.getShopbagCount();
   },
   methods: {
-    ...mapMutations(['changeShopbagCount','changeIsLoadShopbagCont']),
+    ...mapMutations(["changeShopbagCount", "changeIsLoadShopbagCont"]),
     // 获取购物车的数目
     getShopbagCount() {
-      if(this.isLoadShopbagCont){
-        return
+      if (this.isLoadShopbagCont) {
+        return;
       }
       let tokenString = this.$cookies.get("tokenString");
       // console.log(tokenString);
@@ -100,11 +96,34 @@ export default {
         if (res.data.code == 8000) {
           // 购物车数量
           // console.log(res.data.result)
-          this.changeShopbagCount(res.data.result)
-          this.changeIsLoadShopbagCont(true)
+          this.changeShopbagCount(res.data.result);
+          this.changeIsLoadShopbagCont(true);
         }
       });
     },
+    // 获取当前路由名字
+    update() {
+      let name = this.$route.name;
+      if (name == "Home") {
+        this.activeIndex = 0;
+      } else if (name == "Shopbag") {
+        this.activeIndex = 1;
+      } else {
+        this.activeIndex = 2;
+      }
+    },
+  },
+
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      if (to.name == "Home") {
+        vm.activeIndex = 0;
+      } else if (to.name == "Shopbag") {
+        vm.activeIndex = 1;
+      } else {
+        vm.activeIndex = 2;
+      }
+    });
   },
 };
 </script>
@@ -112,8 +131,8 @@ export default {
 <style lang="less" scoped>
 .main {
   padding-bottom: 50px;
-  /deep/ .van-info{
-    background-color: #00A862;
+  /deep/ .van-info {
+    background-color: #00a862;
   }
 }
 </style>
