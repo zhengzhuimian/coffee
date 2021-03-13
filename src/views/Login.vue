@@ -23,7 +23,7 @@
           @click-right-icon="toggleType"
         />
 
-      <div class="forgot" @click=" $router.push({ name: 'Modification' })"><span>忘记密码</span></div>
+      <div class="forgot" @click=" $router.push({ name: 'Forget' })"><span>忘记密码</span></div>
         <div class="btn-box">
           <van-button round block color='#00A862' @click="login">登&nbsp;&nbsp;&nbsp;录</van-button>
           <van-button  round block color='#00A862'  class="register-btn" type="default"  @click="openPopup">注册</van-button>

@@ -1,5 +1,5 @@
 <template>
-  <div class="modification">
+  <div class="forget">
     <van-nav-bar title="找回密码" left-arrow @click-left="$router.go(-1)" />
     <div class="bg"></div>
     <div class="conten">
@@ -7,7 +7,7 @@
         <van-field
           v-model="phone"
           label="手机号"
-          placeholder="请输入旧密码"
+          placeholder="请输入旧手机号"
         />
         <van-field
           v-model="NewPassword"
@@ -28,7 +28,7 @@
 <script>
 import { Dialog } from 'vant';
 export default {
-  name: "Modification",
+  name: "forget",
   data() {
     return {
       phone: "",
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.modification {
+.forget {
   /deep/ .van-nav-bar .van-icon,
   .van-nav-bar__text,
   .van-nav-bar__title {
